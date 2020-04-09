@@ -5,11 +5,12 @@ documents = [
  ]
 
 def exception():
-    try:
         for i in documents:
-            print (i ["name"])
-    except KeyError:
-        print ('У одного из владельцев документа отсутствует имя')
+            try:
+                print (i ["name"])
+            except KeyError:
+                print ('У одного из владельцев документа отсутствует имя')
+                break
 
 
 exception()

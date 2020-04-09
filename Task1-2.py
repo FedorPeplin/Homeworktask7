@@ -10,17 +10,24 @@ ops = {
     "*": (lambda a, b: a * b),
     "/": (lambda a, b: a / b)
 }
-x = input ('Введите выражение ')
+x = input ('Введите выражение (знак операции + пробел + операнд№1 + пробел + операнд №2) ')
 y = x.split()
-try:
-    for key, values in ops.items():
-        if y[0] == key:
-            print (values (int(y[1]), int(y[2])))
-    assert y[0] in ops.keys(), 'Операции, соответствующей такому операнду не предусмотрено'
-except ZeroDivisionError:
-    print ('Ошибка деления на ноль')
-except ValueError:
-    print ('Произошёл ввод строки, а не числа')
-except AssertionError as e:
-    print ('Непредусмотренная операция')
-    print (e)
+assert y[0] in ops.keys(), 'Операции, соответствующей такому операнду не предусмотрено'
+
+if  int(y[1]) < 0 or int(y[2]) < 0:
+    if int(y[1]) < 0:
+        print('Первое из введённых чисел меньше нуля, что не допустимо условием')
+    if int (y[2]) < 0:
+        print('Второе из введённых чисел меньше нуля, что не допустимо условием')
+else:
+    try:
+        for key, values in ops.items():
+            if y[0] == key:
+                print (values (int(y[1]), int(y[2])))
+    except ZeroDivisionError:
+        print ('Ошибка деления на ноль')
+    except ValueError:
+        print ('Произошёл ввод строки, а не числа')
+    except AssertionError as e:
+        print ('Непредусмотренная операция')
+        print (e)
